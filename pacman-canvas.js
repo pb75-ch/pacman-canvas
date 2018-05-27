@@ -60,7 +60,7 @@ function geronimo() {
 		   dataType: 'json',
 		   success: function(data) {
 				console.log('Highscore added: ' + data);
-				$('#highscore-form').html('<span class="button" id="show-highscore">View Highscore List</span>');
+				$('#highscore-form').html('<span class="button" id="show-highscore">Bestenliste ansehen</span>');
 			},
 			error: function(errorThrown) {
 				console.log(errorThrown);
@@ -70,7 +70,7 @@ function geronimo() {
 
 	function addHighscore() {
 			var name = $("input[type=text]").val();
-            $("#highscore-form").html("Saving highscore...");
+            $("#highscore-form").html("speichere Punkte...");
             ajax_add(name ,game.score.score, game.level);
 	}
 	
@@ -145,7 +145,7 @@ function geronimo() {
 		this.monsters;
 		this.level = 1;
 		this.refreshLevel = function(h) {
-			$(h).html("Lvl: "+this.level);
+			$(h).html("Level: "+this.level);
 		};
 		this.gameOver = false;
 		this.canvas = $("#myCanvas").get(0);
@@ -248,7 +248,7 @@ function geronimo() {
 			};
 
 		this.newGame = function() {
-		    var r = confirm("Are you sure you want to restart?");
+		    var r = confirm("Wollen Sie das Spiel wirklich neu starten?");
             if (r) {
         	    console.log("new Game");
                 this.init(0);
@@ -259,7 +259,7 @@ function geronimo() {
 		this.nextLevel = function() {
 			this.level++;
             console.log("Level "+game.level);
-			game.showMessage("Level "+game.level, this.getLevelTitle() + "<br/>(Click to continue!)");
+			game.showMessage("Level "+game.level, this.getLevelTitle() + "<br/>(tippen für weiter!)");
 			game.refreshLevel(".level");
 			this.init(1);
 		};
@@ -269,7 +269,7 @@ function geronimo() {
 			for (var i = 0; i<count; i++) {
 				html += " <img src='img/heart.png'>";
 				}
-			$(".lives").html("Lives: "+html);
+			$(".lives").html("Leben:"+html);
 			
 		};
 
@@ -281,28 +281,28 @@ function geronimo() {
 		this.getLevelTitle = function() {
 			switch(this.level) {
 				case 2:
-					return '"The chase begins"';
+					return '"Die Jagd beginnt"';
                     // activate chase / scatter switching
 				case 3:
-					return '"Inky\s awakening"';
+					return '"Inky\s wacht auf"';
                     // Inky starts leaving the ghost house
 				case 4:
-					return '"Clyde\s awakening"';
+					return '"Clyde\s wacht auf"';
                     // Clyde starts leaving the ghost house
 				case 5:
 					return '"need for speed"';
                     // All the ghosts get faster from now on
                 case 6:
-                    return '"hunting season 1"';
+                    return '"Jagdsaison 1"';
                     // TODO: No scatter mood this time
                 case 7:
-                    return '"the big calm"';
+                    return '"Die grosse Stille"';
                     // TODO: Only scatter mood this time
                 case 8:
-                    return '"hunting season 2"';
+                    return '"Jagdsaison 2"';
                     // TODO: No scatter mood and all ghosts leave instantly
                 case 9:
-                    return '"ghosts on speed"';
+                    return '"Geister mit Tempo"';
                     // TODO: Ghosts get even faster for this level
 				default:
 					return '"nothing new"';
@@ -341,7 +341,7 @@ function geronimo() {
 				this.closeMessage();
 				}
 			else {
-				this.showMessage("Pause","Click to Resume");
+				this.showMessage("Pause","tippen für weiter");
 				}
 			};
 
@@ -522,7 +522,7 @@ function geronimo() {
 			this.score += i;
 		};
 		this.refresh = function(h) {
-			$(h).html("Score: "+this.score);
+			$(h).html("Punkte: "+this.score);
 		};
 		
 	}
@@ -1186,7 +1186,7 @@ function geronimo() {
 	        console.log("pacman died, "+this.lives+" lives left");
 	    	if (this.lives <= 0) {
 				var input = "<div id='highscore-form'><span id='form-validater'></span><input type='text' id='playerName'/><span class='button' id='score-submit'>save</span></div>";
-				game.showMessage("Game over","Total Score: "+game.score.score+input);
+				game.showMessage("Game over","Punktestand: "+game.score.score+input);
 				game.gameOver = true;
 				$('#playerName').focus();
 				}
